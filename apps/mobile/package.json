@@ -1,0 +1,19 @@
+{
+  "name": "mobile",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-native": "*",
+    "@testing-library/react-native": "*",
+    "@react-navigation/native": "*",
+    "@react-navigation/native-stack": "*",
+    "@react-navigation/bottom-tabs": "*",
+    "@testing-library/react": "*",
+    "react": "*",
+    "react-native": "*",
+    "react-native-svg": "*",
+    "react-native-safe-area-context": "*",
+    "react-native-screens": "*",
+    "twrnc": "*"
+  }
+}

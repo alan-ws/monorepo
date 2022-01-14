@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "projects": {
+    "management-request": "libs/management/request",
+    "management-state": "libs/management/state",
+    "mobile": "apps/mobile",
+    "mobile-e2e": "apps/mobile-e2e",
+    "pwa": "apps/pwa",
+    "pwa-e2e": "apps/pwa-e2e",
+    "ui": "libs/ui"
+  }
+}
