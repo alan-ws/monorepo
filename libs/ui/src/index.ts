@@ -4,3 +4,6 @@ export * from './base/typography';
 export * from './base/navigation';
 export * from './composed/dropdown';
 export * from './composed/navigation';
+export * from './components/dropdown';
+export * from './components/navbar';
+export * from './components/search';

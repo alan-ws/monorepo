@@ -9,14 +9,12 @@ export const HomeScreen: FC<{ navigation?: any }> = ({ navigation }) => {
   const content = ['hi', 'there', 'we'];
   const schema = getLayout();
 
-  if (!schema.home) navigation.navigate('Settings');
-
   return (
     <Box>
-      {schema.home.layout.map((value: string) =>
-        {if (!componentLookup[value]) return null
-        return componentLookup[value]({content: content})}
-      )}
+      {schema.home.layout.map((value: string) => {
+        if (!componentLookup[value]) return null;
+        return componentLookup[value];
+      })}
     </Box>
   );
 };

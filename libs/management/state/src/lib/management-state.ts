@@ -39,7 +39,7 @@ const mockData = {
       ],
     },
   },
-  navigation: ['home', 'discover', 'scan & go', 'bag', 'profile']
+  navigation: ['home', 'discover', 'scan & go', 'bag', 'profile'],
 };
 
 export const getLayout = () => {

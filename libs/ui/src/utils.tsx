@@ -1,7 +1,11 @@
-import React from 'react'
-import { Dropdown, IDropdown } from "./composed/dropdown";
+import React from 'react';
+import { RegionDropdown } from './components/dropdown';
+import { UserNavBar } from './components/navbar';
+import { Search } from './components/search';
 
 export type Components = 'region_dropdown';
 export const componentLookup: Record<string, any> = {
-  region_dropdown: (props: IDropdown) => Dropdown(props),
+  region_dropdown: <RegionDropdown />,
+  user_nav: <UserNavBar />,
+  search: <Search />,
 };
