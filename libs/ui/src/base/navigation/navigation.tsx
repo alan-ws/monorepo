@@ -19,7 +19,7 @@ export const NavBar: FC = ({ children }) => {
 export const Link: FC<{ name: string }> = ({ name }) => {
   return (
     <Flex>
-      <NLink href={`/${name === 'home' ? '/' : name}`}>
+      <NLink href={`${name === 'home' ? '/' : `/${name}`}`}>
         <a>{name}</a>
       </NLink>
     </Flex>
