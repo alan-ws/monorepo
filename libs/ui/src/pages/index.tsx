@@ -1,16 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { getLayout } from '@kaddra-app/management/state';
 import React, { FC } from 'react';
 import { Box } from '../base/layout';
 import { Text } from '../base/typography';
+import { componentLookup } from '../utils';
 
 export const HomeScreen: FC<{ navigation?: any }> = ({ navigation }) => {
+  const content = ['hi', 'there', 'we'];
+  const schema = getLayout();
+
+  if (!schema.home) navigation.navigate('Settings');
+
   return (
     <Box>
-      <Text>HI FROM MOBILE</Text>
-      {/* <Button
-        title="Go to Settings"
-        onPress={() => navigation.navigate('Settings')}
-      /> */}
+      {schema.home.layout.map((value: string) =>
+        {if (!componentLookup[value]) return null
+        return componentLookup[value]({content: content})}
+      )}
     </Box>
   );
 };

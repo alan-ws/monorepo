@@ -9,7 +9,7 @@ export function Index() {
   return (
     <>
       <Flex>HI from PWA</Flex>
-      <Dropdown content={'HI'} />
+      <Dropdown content={['HI', 'there', 'we']} />
     </>
   );
 }
