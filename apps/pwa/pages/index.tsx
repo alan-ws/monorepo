@@ -1,4 +1,4 @@
-import { Flex } from '@kaddra-app/ui';
+import { Dropdown, Flex } from '@kaddra-app/ui';
 
 export function Index() {
   /*
@@ -7,7 +7,10 @@ export function Index() {
    * Note: The corresponding styles are in the ./index.css file.
    */
   return (
-    <Flex>HI from PWA</Flex>
+    <>
+      <Flex>HI from PWA</Flex>
+      <Dropdown content={'HI'} />
+    </>
   );
 }
 
