@@ -41,8 +41,9 @@ export const useNavigation = () => {
   const router = useRouter();
 
   return {
-    navigate: (url: string) => router.push(url),
+    navigate: (url: string, params?: string) =>
+      router.push(params ? `${url}/${params}` : url),
     reset: (url: string) => router.replace(url),
-    params: router.query
-  }
-}
+    params: () => router.query,
+  };
+};

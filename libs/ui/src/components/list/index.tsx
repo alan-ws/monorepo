@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { getCategoryList } from '@kaddra-app/management/state';
 import { Flex } from '../../base/layout';
-import {Text} from '../../base/typography';
+import { Text } from '../../base/typography';
 import { useNavigation } from '../../base/navigation';
 
 export const CategoryList: FC = () => {
@@ -13,7 +13,10 @@ export const CategoryList: FC = () => {
       {categories.map(
         (value: { category: string; imgUri: string }, index: number) => {
           return (
-            <Flex key={`${value.category}_${index}`} onpress={() => navigation.navigate(`category/${value.category}`)}>
+            <Flex
+              key={`${value.category}_${index}`}
+              onpress={() => navigation.navigate('category', value.category)}
+            >
               <Text>{value.category}</Text>
             </Flex>
           );

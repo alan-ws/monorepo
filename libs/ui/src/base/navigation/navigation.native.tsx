@@ -10,7 +10,7 @@ import React, { FC } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { CategoryScreen, HomeScreen, SettingsScreen } from '../../pages';
 import { Text } from '../typography';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation as useNativeNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { getCategoryList, getLayout } from '@kaddra-app/management/state';
 
@@ -39,15 +39,25 @@ const HomeScreenStack = () => {
 
   return (
     <HomeStack.Navigator>
-      {stacks.map(
+      <HomeStack.Screen
+        name={'home'}
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      {/* {stacks.map(
         (value: { category: string; imgUri: string }, index: number) => (
           <HomeStack.Screen
-            name={`category/${value.category}`}
-            component={HomeScreen}
+            name={value.category}
+            component={}
             options={{ headerShown: false }}
           />
         )
-      )}
+      )} */}
+      <HomeStack.Screen
+        name={'category'}
+        component={CategoryScreen}
+        options={{ headerShown: false }}
+      />
     </HomeStack.Navigator>
   );
 };
@@ -67,7 +77,7 @@ export const AppNavigator: FC<{ routes: any[] }> = ({ routes }) => {
       {routes.map((route) => (
         <Tab.Screen
           key={route}
-          name={route}
+          name={`${route}Stack`}
           options={{ headerShown: false }}
           component={Pages[route] ?? Fallback}
         />
@@ -76,4 +86,20 @@ export const AppNavigator: FC<{ routes: any[] }> = ({ routes }) => {
   );
 };
 
-export { useNavigation };
+export const useNavigation = () => {
+  const navigator = useNativeNavigation();
+  const { navigate, reset } = navigator;
+
+  return {
+    navigate,
+    reset,
+    params: () => {
+      const { routes } = navigator.getState();
+      const params = {};
+      routes.forEach((value) => {
+        params[value.name] = value.params;
+      });
+      return params;
+    },
+  };
+};
