@@ -7,3 +7,4 @@ export * from './composed/navigation';
 export * from './components/dropdown';
 export * from './components/navbar';
 export * from './components/search';
+export * from './pages/index';

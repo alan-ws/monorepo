@@ -5,6 +5,7 @@
 // next/router provides useRouter for access to the router
 
 import NLink from 'next/link';
+import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { Flex } from '../../base/layout';
 
@@ -20,7 +21,7 @@ export const Link: FC<{ name: string }> = ({ name }) => {
   return (
     <Flex>
       <NLink href={`${name === 'home' ? '/' : `/${name}`}`}>
-        <a>{name}</a>
+        <a>{name.replace(/-and-/, ' & ')}</a>
       </NLink>
     </Flex>
   );
@@ -35,3 +36,13 @@ export const AppNavigator: FC<{ routes: any[] }> = ({ routes }) => {
     </NavBar>
   );
 };
+
+export const useNavigation = () => {
+  const router = useRouter();
+
+  return {
+    navigate: (url: string) => router.push(url),
+    reset: (url: string) => router.replace(url),
+    params: router.query
+  }
+}

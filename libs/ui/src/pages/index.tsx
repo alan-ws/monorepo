@@ -1,12 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { getLayout } from '@kaddra-app/management/state';
 import React, { FC } from 'react';
 import { Box } from '../base/layout';
 import { Text } from '../base/typography';
+import { getLayout } from '@kaddra-app/management/state';
 import { componentLookup } from '../utils';
 
-export const HomeScreen: FC<{ navigation?: any }> = ({ navigation }) => {
-  const content = ['hi', 'there', 'we'];
+export const HomeScreen: FC = () => {
+  // we can do state updates and mutations at this layer
+  // so that at the components level they can merely retrieve or mutate
+  // reducing the amount of requests made at a component level
+  // unless we want components to be isolated?
   const schema = getLayout();
 
   return (
@@ -19,12 +21,21 @@ export const HomeScreen: FC<{ navigation?: any }> = ({ navigation }) => {
   );
 };
 
-// keep a wrapper for navigation for react-native and compose the internals of the pages
-export const SettingsScreen: FC<{ navigation?: any }> = ({ navigation }) => {
+export const SettingsScreen: FC = () => {
+  const schema = getLayout();
+
   return (
     <Box>
-      <Text>Settings!</Text>
-      {/* <Button title="Go to Home" onPress={() => navigation.navigate('Home')} /> */}
+      {/* {schema.home.layout.map((value: string) => {
+        if (!componentLookup[value]) return null;
+        return componentLookup[value];
+      })} */}
     </Box>
   );
 };
+
+export const CategoryScreen: FC = () => {
+  return <Box>
+    <Text>Category</Text>
+  </Box>
+}

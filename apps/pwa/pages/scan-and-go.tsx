@@ -1,6 +1,6 @@
-import { Flex, HomeScreen } from '@kaddra-app/ui';
+import { Flex } from '@kaddra-app/ui';
 
-export function Index() {
+export function ScanAndGo() {
   /*
    * Replace the elements below with your own.
    *
@@ -8,10 +8,9 @@ export function Index() {
    */
   return (
     <>
-      <Flex>HI from PWA</Flex>
-      <HomeScreen />
+      <Flex>SCAN AND GO</Flex>
     </>
   );
 }
 
-export default Index;
+export default ScanAndGo;

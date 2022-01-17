@@ -18,10 +18,10 @@ export const Box: FC<{_css?: string}> =
   ({children, _css}) =>
     <div className={buildCss(_css)}>{children}</div>
 
-export const Flex: FC<{_css?: string}> =
-  ({children, _css}) => {
+export const Flex: FC<{_css?: string; onpress: () => void}> =
+  ({children, _css, onpress}) => {
     return (
-      <div className={buildCss(base, _css)}>
+      <div className={buildCss(base, _css)} onClick={onpress}>
         {children}
       </div>
     )

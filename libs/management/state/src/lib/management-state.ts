@@ -1,7 +1,3 @@
-export function getNavigation() {
-  return ['home', 'settings'];
-}
-
 const mockData = {
   schema: {
     home: {
@@ -39,9 +35,23 @@ const mockData = {
       ],
     },
   },
-  navigation: ['home', 'discover', 'scan & go', 'bag', 'profile'],
+  navigation: ['home', 'discover', 'scan-and-go', 'bag', 'profile'],
 };
 
 export const getLayout = () => {
   return mockData.schema;
 };
+
+export function getNavigation() {
+  return mockData.navigation;
+}
+
+export function getCategoryList() {
+  return [
+    {category: 'fashion', imgUri: ''},
+    {category: 'dining', imgUri: ''},
+    {category: 'health-and-beauty', imgUri: ''},
+    {category: 'wine-and-spirits', imgUri: ''},
+    {category: 'automotive', imgUri: ''},
+  ]
+}
