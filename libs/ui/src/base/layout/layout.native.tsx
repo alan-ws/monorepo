@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Pressable, View } from 'react-native';
-// import tw from 'tailwind-react-native-classnames';
+import tw from 'twrnc';
 
 // const base = 'flex';
 
@@ -22,7 +22,7 @@ export const Box: FC<{ _css?: string }> = ({ children, _css }) => (
 );
 
 export const Flex: FC<{ _css?: string, onpress?: () => void }> = ({ children, _css, onpress }) => {
-  if (!onpress) return <View>{children}</View>;
+  if (!onpress) return <View style={tw.style(_css)}>{children}</View>;
 
   return <Pressable onPress={onpress}>
     <View>{children}</View>

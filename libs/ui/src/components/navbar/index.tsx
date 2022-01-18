@@ -27,9 +27,9 @@ export const UserNavBar = () => {
   };
 
   return (
-    <Flex _css="w-full row">
+    <Flex _css="w-full flex-row">
       <UserName name={profile.name} />
-      <Flex _css="flex-1 justify-end">
+      <Flex _css="flex-1 justify-end flex-row">
         <Bookmarks bookmarks={profile.favorites} />
         <Bookmarks bookmarks={profile.favorites} />
       </Flex>

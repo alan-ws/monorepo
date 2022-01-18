@@ -8,7 +8,6 @@ export function Index() {
    */
   return (
     <>
-      <Flex>HI from PWA</Flex>
       <HomeScreen />
     </>
   );
