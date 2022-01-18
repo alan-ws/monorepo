@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { NavigationContainer } from "@react-navigation/native"
-import { Navigation } from '@kaddra-app/ui';
-// import 'tailwindcss/tailwind.css';
+import { NativeBaseProvider } from 'native-base';
+import { Box } from '@kaddra-app/ui';
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Navigation />
-    </NavigationContainer> );
+    <NativeBaseProvider>
+      <Box>Hello world</Box>
+    </NativeBaseProvider>
+  );
 }
