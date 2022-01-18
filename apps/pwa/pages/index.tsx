@@ -1,8 +1,12 @@
 import React from 'react';
-import { Box } from '@kaddra-app/ui';
+import { Box, Calendar } from '@kaddra-app/ui';
+import { Text } from 'native-base';
 
 export function Index() {
-  return <Box>HELLO WORLD</Box>
+  return <Box>
+    <Text>Calendar</Text>
+    <Calendar />
+  </Box>
 }
 
 export default Index;

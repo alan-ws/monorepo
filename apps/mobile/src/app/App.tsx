@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { NativeBaseProvider } from 'native-base';
-import { Box } from '@kaddra-app/ui';
+import { NativeBaseProvider, Text } from 'native-base';
+import { Calendar } from '@kaddra-app/ui';
 
 export default function App() {
   return (
     <NativeBaseProvider>
-      <Box>Hello world</Box>
+      <Text>Calendar</Text>
+      <Calendar />
     </NativeBaseProvider>
   );
 }

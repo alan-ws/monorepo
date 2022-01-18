@@ -6,6 +6,8 @@ const withTM = require('next-transpile-modules')([
   'native-base',
   'react-native-svg',
   'react-native-safe-area-context',
+  'react-native-calendars',
+  'react-native-swipe-gestures',
   '@react-aria/visually-hidden',
   '@react-native-aria/button',
   '@react-native-aria/checkbox',

@@ -16,6 +16,7 @@
     "react-native-screens": "*",
     "twrnc": "*",
     "next": "*",
-    "native-base": "*"
+    "native-base": "*",
+    "react-native-calendars": "*"
   }
 }
