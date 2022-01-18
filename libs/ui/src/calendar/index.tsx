@@ -1,9 +1,14 @@
+import Image from 'next/image';
 import React, { FC } from 'react';
 import { Calendar as RNCalendar } from 'react-native-calendars';
+import NextArrow from './img/next.png'
+
+const Arrow = () => <Image src={NextArrow} height="32px" width="32px" />
 
 const Calendar: FC = () => {
   return (
     <RNCalendar
+      renderArrow={direction => direction === 'left' ? null : <Arrow />}
       markingType={'period'}
       markedDates={{
         '2012-05-15': { marked: true, dotColor: '#50cebb' },

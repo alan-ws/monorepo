@@ -23,6 +23,7 @@ const withTM = require('next-transpile-modules')([
   '@react-stately/combobox',
   '@react-stately/radio',
 ]);
+// const withImages = require('next-images')
 
 /**
  * @type {import('@nrwl/next/plugins/with-nx').WithNxOptions}
@@ -32,7 +33,7 @@ const nextConfig = {
   nx: {
     // Set this to true if you would like to to use SVGR
     // See: https://github.com/gregberge/svgr
-    svgr: false,
+    svgr: true,
   },
   webpack: (config) => {
     config.resolve.alias = {
@@ -56,6 +57,7 @@ module.exports = withPlugins(
   [
     withNx,
     withTM,
+    // withImages,
   ],
   nextConfig
 );
