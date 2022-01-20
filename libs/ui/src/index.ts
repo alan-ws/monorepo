@@ -9,3 +9,5 @@
 // export * from './components/search';
 // export * from './pages/index';
 export * from './container';
+export * from './components/dropdowns';
+export * from './components/navbars';

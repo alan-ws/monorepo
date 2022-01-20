@@ -60,6 +60,19 @@ export function getCategories(name: string) {
   return ['champagne', 'wine', 'sake', 'accessories'];
 }
 
+export function getRegions() {
+  return ['singapore', 'hong kong']
+}
+
+export function getProfile() {
+  return {
+    name: 'Will',
+    notifications: 5,
+    bookmarks: 2,
+    history: false
+  }
+}
+
 // const mockData = {
 //   schema: {
 //     home: {
