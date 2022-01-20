@@ -1,11 +1,30 @@
 import * as React from 'react';
-import { NativeBaseProvider } from 'native-base';
-import { Box, RegionalDrop } from '@kaddra-app/ui';
+import {
+  Center,
+  Flex,
+  Heading,
+  NativeBaseProvider,
+  ScrollView,
+  useTheme,
+  VStack,
+} from 'native-base';
+import {
+  ActionBar,
+  Box,
+  Category,
+  Home,
+  Popular,
+  RegionalDrop,
+  SearchBar,
+} from '@kaddra-app/ui';
 
 export default function App() {
   return (
     <NativeBaseProvider>
       <RegionalDrop />
+      <ActionBar />
+      <SearchBar />
+      <Home />
     </NativeBaseProvider>
   );
 }

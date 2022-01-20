@@ -11,3 +11,5 @@
 export * from './container';
 export * from './components/dropdowns';
 export * from './components/navbars';
+export * from './components/promotionals';
+export * from './components/lists';
