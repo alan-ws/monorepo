@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActionBar, Home, RegionalDrop, SearchBar } from '@kaddra-app/ui';
+import { ActionBar, Main, RegionalDrop, SearchBar } from '@kaddra-app/ui';
 import { Flex } from 'native-base';
 
 export function Index() {
@@ -7,7 +7,7 @@ export function Index() {
     <RegionalDrop />
     <ActionBar />
     <SearchBar />
-    <Home />
+    <Main />
   </>
 }
 

@@ -29,7 +29,7 @@ export const Popular = () => {
   );
 };
 
-export const Home = () => {
+export const Main = () => {
   return (
     <ScrollView
       _contentContainerStyle={{
