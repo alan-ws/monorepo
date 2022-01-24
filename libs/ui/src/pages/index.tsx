@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from 'native-base';
-import { ActionBar, Category, Main, RegionalDrop, SearchBar } from '..';
+import { ActionBar, Category, Categories, Main, RegionalDrop, SearchBar } from '..';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const HomeStack = createNativeStackNavigator();
@@ -19,8 +19,16 @@ const Outlet = () => {
 const Home = () => {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name={'homestack'} options={{ headerShown: false }} component={Outlet} />
-      <HomeStack.Screen name={'categorystack'} options={{ headerShown: false }} component={Category} />
+      <HomeStack.Screen
+        name={'homestack'}
+        options={{ headerShown: false }}
+        component={Outlet}
+      />
+      <HomeStack.Screen
+        name={'category'}
+        options={{ headerShown: false }}
+        component={Categories}
+      />
     </HomeStack.Navigator>
   );
 };

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { getNavigation, getProfile } from '@kaddra-app/management/state';
-import { Flex, Text, Image, Input, Pressable } from 'native-base';
+import { Flex, Text, Image, Input, Pressable, Button } from 'native-base';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Fallback, Pages } from '../pages';
 import { useNavigation } from '@react-navigation/native';
@@ -22,19 +22,36 @@ const Notification = () => {
   );
 };
 
-const Bookmark = () => {
+export const Basket = () => {
+  const navi = useNavigation();
+
+  return (
+    <Pressable onPress={() => navi.navigate('basket', {})}>
+      <Image
+        src={
+          'https://cdns.iconmonstr.com/wp-content/assets/preview/2013/240/iconmonstr-basket-14.png'
+        }
+        width="8"
+        height="8"
+        alt="basket"
+      />
+    </Pressable>
+  );
+};
+
+export const Bookmark = () => {
   const navi = useNavigation();
 
   return (
     <Pressable onPress={() => navi.navigate('bookmarks', {})}>
-    <Image
-      src={
-        'https://cdns.iconmonstr.com/wp-content/assets/preview/2013/240/iconmonstr-bookmark-2.png'
-      }
-      width="8"
-      height="8"
-      alt="notification"
-    />
+      <Image
+        src={
+          'https://cdns.iconmonstr.com/wp-content/assets/preview/2013/240/iconmonstr-bookmark-2.png'
+        }
+        width="8"
+        height="8"
+        alt="notification"
+      />
     </Pressable>
   );
 };
@@ -44,14 +61,14 @@ const History = () => {
 
   return (
     <Pressable onPress={() => navi.navigate('history', {})}>
-    <Image
-      src={
-        'https://cdns.iconmonstr.com/wp-content/assets/preview/2017/240/iconmonstr-time-17.png'
-      }
-      width="8"
-      height="8"
-      alt="notification"
-    />
+      <Image
+        src={
+          'https://cdns.iconmonstr.com/wp-content/assets/preview/2017/240/iconmonstr-time-17.png'
+        }
+        width="8"
+        height="8"
+        alt="notification"
+      />
     </Pressable>
   );
 };
@@ -113,5 +130,18 @@ export const AppNavigation: FC = () => {
         />
       ))}
     </Tab.Navigator>
+  );
+};
+
+export const Filter = () => {
+  const filters = ['all', 'ar lenoble', 'collect', 'krug', 'moet'];
+
+  return (
+    <Flex flexDirection={'row'}>
+      <Button>menu</Button>
+      {filters.map((value: string, index: number) => (
+        <Button onPress={() => console.log(value)}>{value}</Button>
+      ))}
+    </Flex>
   );
 };
