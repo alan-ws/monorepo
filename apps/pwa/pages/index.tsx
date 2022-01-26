@@ -1,14 +1,8 @@
 import React from 'react';
-import { ActionBar, Main, RegionalDrop, SearchBar } from '@kaddra-app/ui';
-import { Flex } from 'native-base';
+import { Home } from '@kaddra-app/ui';
 
 export function Index() {
-  return <>
-    <RegionalDrop />
-    <ActionBar />
-    <SearchBar />
-    <Main />
-  </>
+  return <Home />
 }
 
 export default Index;

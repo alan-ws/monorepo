@@ -1,11 +1,11 @@
-import { getRegions } from '@kaddra-app/management/state';
-import { Select, VStack } from 'native-base';
 import React, { FC, useState } from 'react';
+import { Select, VStack } from 'native-base';
+import { getRegions } from '@kaddra-app/management/state';
 
 export const RegionalDrop: FC = () => {
   const [region, setRegion] = useState<string>();
-
   const regions = getRegions();
+
   return (
     <VStack>
       <Select

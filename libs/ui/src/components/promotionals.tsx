@@ -10,7 +10,7 @@ import {
   useTheme,
   VStack,
 } from 'native-base';
-import { Category } from '..';
+import { CategoryList } from '../presentation/category/list';
 
 export const Popular = () => {
   return (
@@ -39,7 +39,7 @@ export const Main = () => {
       }}
     >
       <Popular />
-      <Category />
+      <CategoryList />
     </ScrollView>
   );
 };
