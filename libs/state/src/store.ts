@@ -6,15 +6,16 @@ export const getStore = (preloadedState = {}) =>
   configureStore({
     reducer: {
       kernel: kernelSlice.reducer,
-      [productApi.reducerPath]: productApi.reducer,
+      [checkoutApi.reducerPath]: checkoutApi.reducer,
       [layoutApi.reducerPath]: layoutApi.reducer,
     },
     preloadedState,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(productApi.middleware, layoutApi.middleware),
+      getDefaultMiddleware().concat(checkoutApi.middleware, layoutApi.middleware),
   });
 
 export const store = getStore();
 setupListeners(store.dispatch);
 
 export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch

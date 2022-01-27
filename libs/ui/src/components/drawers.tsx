@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import React, { Dispatch, FC, SetStateAction, useState } from 'react';
 import {
   ScrollView,
   Pressable,
@@ -14,6 +14,7 @@ export const BasketDrawer: FC<{
   setshowtoast: Dispatch<SetStateAction<boolean>>;
 }> = ({ isopen, setvisible, setshowtoast }) => {
   const quantity = ['half case', 'case', '2 cases', 'bottle'];
+  const [amount, setAmount] = useState<number>(0)
 
   return (
     <Slide in={isopen} placement="bottom">
@@ -56,11 +57,11 @@ export const BasketDrawer: FC<{
               alignItems={'center'}
             >
               <Flex>
-                <Button>-</Button>
+                <Button onPress={() => setAmount(amt => amt === 0 ? amt : amt - 1)}>-</Button>
               </Flex>
-              <Flex>1</Flex>
+              <Flex>{amount}</Flex>
               <Flex>
-                <Button>+</Button>
+                <Button onPress={() => setAmount(amt => amt + 1)}>+</Button>
               </Flex>
             </Flex>
           </Flex>
@@ -78,7 +79,19 @@ export const BasketDrawer: FC<{
             justifyContent={'space-between'}
           >
             <Button onPress={() => setvisible((prev) => !prev)}>CANCEL</Button>
-            <Button onPress={() => {setvisible((prev) => !prev); setshowtoast(true)}}>
+            <Button onPress={async () => {
+              setvisible((prev) => !prev);
+              try {
+                const user = await verifyStock({
+                  productId: 1,
+                  amount: amount
+                }).unwrap();
+                dispatch(checkoutSlice.action.addToBasket(user));
+                setshowtoast(true)
+              } catch (err) {
+                setshowtoast(true, {msg: 'Could not be added to basket', state: 'error'})
+              }
+            }} disabled={amount === 0}>
               ADD TO BAG
             </Button>
           </Flex>

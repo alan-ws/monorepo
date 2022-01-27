@@ -12,5 +12,3 @@ export const layoutApi = createApi({
     }),
   }),
 });
-
-export const { useGetLayoutQuery } = layoutApi;
