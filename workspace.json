@@ -7,6 +7,8 @@
     "mobile-e2e": "apps/mobile-e2e",
     "pwa": "apps/pwa",
     "pwa-e2e": "apps/pwa-e2e",
+    "request": "libs/request",
+    "state": "libs/state",
     "ui": "libs/ui"
   }
 }

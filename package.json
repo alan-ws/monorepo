@@ -13,6 +13,7 @@
     "@react-navigation/bottom-tabs": "^6.0.9",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
+    "@reduxjs/toolkit": "^1.7.1",
     "core-js": "^3.6.5",
     "native-base": "^3.3.2",
     "next": "12.0.9",

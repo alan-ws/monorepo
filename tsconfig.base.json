@@ -19,6 +19,8 @@
         "libs/management/request/src/index.ts"
       ],
       "@kaddra-app/management/state": ["libs/management/state/src/index.ts"],
+      "@kaddra-app/request": ["libs/request/src/index.ts"],
+      "@kaddra-app/state": ["libs/state/src/index.ts"],
       "@kaddra-app/ui": ["libs/ui/src/index.ts"]
     }
   },
