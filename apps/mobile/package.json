@@ -15,6 +15,7 @@
     "react-native-safe-area-context": "*",
     "react-native-screens": "*",
     "twrnc": "*",
-    "next": "*"
+    "next": "*",
+    "native-base": "*"
   }
 }

@@ -1,22 +1,14 @@
-import { Navigation } from '@kaddra-app/ui';
 import { AppProps } from 'next/app';
-import Head from 'next/head';
-import 'tailwindcss/tailwind.css';
+import { NativeBaseProvider } from 'native-base';
+import { AppNavigation } from '@kaddra-app/ui';
 
-function CustomApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <Head>
-        <title>Welcome to pwa!</title>
-      </Head>
-
-      <main className="app">
-        <Component {...pageProps} />
-      </main>
-
-      <Navigation />
-    </>
+    <NativeBaseProvider>
+      <Component {...pageProps} />
+      <AppNavigation />
+    </NativeBaseProvider>
   );
 }
 
-export default CustomApp;
+export default MyApp;

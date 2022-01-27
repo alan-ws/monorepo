@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { CategoryScreen } from '@kaddra-app/ui';
+import { Category as CategoryPage } from '@kaddra-app/ui';
 
 export const Category: FC = () => {
-  return <CategoryScreen />;
+  return <CategoryPage />;
 };
 
 export default Category;
