@@ -1,13 +1,37 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Image, Text, ScrollView, Button, Flex, Heading } from 'native-base';
 import { Bookmark } from '../../components/icons';
 import { BasketDrawer } from '../../components/drawers';
 import { useNavigation } from '../../native/natigation';
+import { useSelector } from 'react-redux';
+import { RootState } from '@kaddra-app/state';
+
+
+const Toast: FC<{msg: string; state: string}> = ({msg, state}) => {
+  const toastColors: {[key:string]: string} = {
+    success: 'green',
+    error: 'red',
+  };
+
+  return (
+    <Flex
+      bgColor={toastColors[state]}
+      flexDirection={'row'}
+      w="full"
+      justifyContent={'space-between'}
+    >
+      <Text>{msg}</Text>
+      <Button>VIEW</Button>
+    </Flex>
+  );
+};
 
 export const Product = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [showToast, setShowToast] = React.useState(false);
   const navigation = useNavigation();
+  const productId = useSelector((state: RootState) => state.product.activeProduct?.id)
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [toast, setToast] =
+    React.useState<{ msg: string; state: 'success' | 'error' }>();
 
   return (
     <>
@@ -28,17 +52,7 @@ export const Product = () => {
             width="2/3"
             alt="collect"
           />
-          {showToast ? (
-            <Flex
-              bgColor={'gray.400'}
-              flexDirection={'row'}
-              w="full"
-              justifyContent={'space-between'}
-            >
-              <Text>1 x 75 cL added to bag</Text>
-              <Button>VIEW</Button>
-            </Flex>
-          ) : null}
+          {toast ? <Toast {...toast} /> : null}
           <Flex flexDirection={'row'} width={'full'}>
             <Flex
               flexDirection={'row'}
@@ -98,9 +112,10 @@ export const Product = () => {
         </Flex>
       </ScrollView>
       <BasketDrawer
+        productid={productId}
         isopen={isOpen}
         setvisible={setIsOpen}
-        setshowtoast={setShowToast}
+        settoast={setToast}
       />
     </>
   );
