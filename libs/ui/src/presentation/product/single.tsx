@@ -9,8 +9,8 @@ import { RootState } from '@kaddra-app/state';
 
 const Toast: FC<{msg: string; state: string}> = ({msg, state}) => {
   const toastColors: {[key:string]: string} = {
-    success: 'green',
-    error: 'red',
+    success: 'green.500',
+    error: 'red.500',
   };
 
   return (

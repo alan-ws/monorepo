@@ -2,7 +2,6 @@ import React, {
   Dispatch,
   FC,
   SetStateAction,
-  useEffect,
   useState,
 } from 'react';
 import {
@@ -13,8 +12,9 @@ import {
   Flex,
   Divider,
 } from 'native-base';
-import { useSelector } from 'react-redux';
-import { RootState } from '@kaddra-app/state';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, checkoutSlice } from '@kaddra-app/state';
+import { useVerifyStockLevelMutation } from '@kaddra-app/request';
 
 function useGetProductQuantitis(productId?: string): { quantites?: string[] } {
   const quantites = useSelector(
@@ -25,24 +25,52 @@ function useGetProductQuantitis(productId?: string): { quantites?: string[] } {
   return { quantites: quantites };
 }
 
-// function useVerifyStock(productId: string, quantity: number) {
-//   useEffect(() => {
-//     if (!productId) return;
-//     verifyStock({
-//       productId: 1,
-//       amount: amount,
-//     }).unwrap();
-//   }, [productId, quantity])
-// }
+function useAddToBasket() {
+  const dispatch = useDispatch();
+  const [toastDetails, setToastDetails] = useState<{msg: string; state: 'success' | 'error'}>();
+  const [verifyStockLevel, { isLoading }] = useVerifyStockLevelMutation();
 
-// function useAddToBasket(productId: string, quantity: number) {
-//   const dispatch = useDispatch();
+  const handler = async (amount: number, productid?: string) => {
+    try {
+      if (!productid) return;
+  
+      const stockLevels = await verifyStockLevel({
+        productId: productid,
+        quantity: 4,
+      }).unwrap();
 
-//   useEffect(() => {
-//     if (!productId) return;
-//     dispatch(checkoutSlice.action.addToBasket(user));
-//   }, [productId, quantity])
-// }
+      if (stockLevels[0].quantity >= amount) {
+        setToastDetails({
+          msg: 'Product X has been added to basket',
+          state: 'success',
+        });
+        dispatch(
+          checkoutSlice.actions.updateBasket({
+            product: productid,
+            quantity: amount,
+            value: amount * 10,
+          })
+        );
+      } else {
+        setToastDetails({
+          msg: `Only ${stockLevels[0].quantity} avaliable`,
+          state: 'success',
+        });
+      }
+    } catch (err) {
+      setToastDetails({
+        msg: 'Could not add to basket',
+        state: 'error',
+      });
+    }
+  };
+
+  return {
+    handler,
+    isLoading,
+    toastDetails,
+  }
+}
 
 export const BasketDrawer: FC<{
   productid?: string;
@@ -59,27 +87,10 @@ export const BasketDrawer: FC<{
   >;
 }> = ({ productid, isopen, setvisible, settoast }) => {
   const { quantites } = useGetProductQuantitis(productid);
+  const {handler, isLoading, toastDetails} = useAddToBasket()
   const [amount, setAmount] = useState<number>(0);
 
-  const handleAddToBasket = async () => {
-    setvisible((prev) => !prev);
-    // try {
-    //   const user = await verifyStock({
-    //     productId: productid,
-    //     amount: amount,
-    //   }).unwrap();
-
-    //   settoast({
-    //     msg: 'Product X has been added to basket',
-    //     state: 'success',
-    //   });
-    // } catch (err) {
-    //   settoast({
-    //     msg: 'Could not be added to basket',
-    //     state: 'error',
-    //   });
-    // }
-  };
+  if (toastDetails) settoast(toastDetails)
 
   return (
     <Slide in={isopen} placement="bottom">
@@ -106,9 +117,10 @@ export const BasketDrawer: FC<{
             </Flex>
           </Pressable>
           <Flex flexDirection={'row'} width={'full'}>
-            {quantites && quantites.map((value: string) => (
-              <Button key={value}>{value}</Button>
-            ))}
+            {quantites &&
+              quantites.map((value: string) => (
+                <Button key={value}>{value}</Button>
+              ))}
           </Flex>
           <Flex width={'full'} flexDirection={'row'}>
             <Flex flexDirection={'column'} width={'1/2'}>
@@ -150,7 +162,14 @@ export const BasketDrawer: FC<{
             justifyContent={'space-between'}
           >
             <Button onPress={() => setvisible((prev) => !prev)}>CANCEL</Button>
-            <Button onPress={handleAddToBasket} disabled={amount === 0}>
+            <Button
+              onPress={() => {
+                setvisible(prev => !prev)
+                handler(amount, productid)
+              }}
+              disabled={amount === 0}
+              isLoading={isLoading}
+            >
               ADD TO BAG
             </Button>
           </Flex>
